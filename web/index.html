@@ -9,8 +9,77 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/Index.css" rel="stylesheet" type="text/css"/>
+        <link href="font-Awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <script>
+        function habilitar(){
+            document.getElementById("boton1").disabled=false;
+            document.getElementById("boton2").disabled=false;
+            document.getElementById("iniciar").disabled=true;
+            var nombre = prompt("¿Cómo deseas que se llame tu base de datos?", "");
+            document.getElementById("p1").innerHTML =nombre;
+            document.getElementById("sentencias").value="create database "+nombre+";";
+        }
+        
+        function explicarCrearBase(){
+            document.getElementById("explicaciones").value="Para crear una base de datos se utiliza la sentencia 'create database'";
+        }
+        
+        function explicarCrearTabla(){
+            document.getElementById("explicaciones").value="Dar un poco de informacion de lo que es 'crear una tabla' y para que sirve";
+        }
+        
+        function explicarCrearConsulta(){
+            document.getElementById("explicaciones").value="Dar un poco de informacion de lo que es una consulta y cómo funcionan";
+        }
+        
+        function crearTabla(){
+            document.getElementById("divTabla").style.visibility="visible";
+            document.getElementById("derecha").style.visibility="hidden";
+            document.getElementById("divConsulta").style.visibility="hidden";
+        }
+        
+        function crearConsulta(){
+            document.getElementById("divTabla").style.visibility="hidden";
+            document.getElementById("derecha").style.visibility="hidden";
+            document.getElementById("divConsulta").style.visibility="visible";
+        }
+        </script>
     </head>
+    
     <body>
-        <div>A Villena le gusta el penet</div>
+        <div id="central">
+            <div style =" display: table;float: left; width: 100%; height: 5% ">
+                <div id="titulo">
+                    <p id="p1" style="padding: 0px; margin: 0px;">Manejador de bases de datos para novatos</p>
+                </div>
+            </div>
+            <div style =" display: table;float: left; width: 100%; height: 95% ">
+                <div id="izquierda">
+                    <button id="iniciar" onclick="habilitar()">Crear base</button><button class="imagen fa fa-info" id="explicarCrearBase" onclick="explicarCrearBase()" title="Saber más..."></button>
+                    <br>
+                    <button name="boton1" id="boton1" onclick="crearTabla()" disabled="">Crear tabla</button><button class="imagen fa fa-info" onclick="explicarCrearTabla()" id="explicarCrearTabla"  title="Saber más..."></button>
+                    <br>
+                    <button name="boton2" id="boton2" onclick="crearConsulta()" disabled="">Crear consulta</button><button class="imagen fa fa-info" onclick="explicarCrearConsulta()" id="explicarCrearConsulta" title="Saber más..."></button>
+                </div>
+                <div id="medio">
+                    <div class="invisible" id="divTabla">
+                        Crear aqui formulario, que sirva tambien de tutorial, para hacer tablas
+                    </div>
+                    <div class="invisible" id="divConsulta">
+                        Crear aqui formulario, que sirva tambien de tutorial, para hacer consultas
+                    </div>
+                    <div id="derecha">
+                        <textarea disabled="" id="sentencias" readonly="" ></textarea>
+                    </div>
+                    <div id="derecha-abajo">
+                        <textarea disabled="" id="explicaciones" readonly="" style="height: 88%">Nota: Todas las sentencias deben terminar con punto y coma (;)</textarea>
+                    </div>
+                </div>
+                <div id="mas-derecho">
+                    Aqui se desplegaran las tablas que se creen o las consultas que se realicen
+                </div>
+            </div>
+        </div>  
     </body>
 </html>
