@@ -1,0 +1,134 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 16, 2019, 3:17:40 PM
+    Author     : rodri
+*/
+@import 'https://fonts.googleapis.com/css?family=Rubik+One';
+
+#central {
+    position: absolute;
+    height: 600px;
+    width: 1200px;
+    margin: -300px 0 0 -600px;
+    top: 50%;
+    left: 50%;
+    display:table;
+    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+    font-size: 15px; 
+    border: black 2px solid;
+}
+
+#titulo{
+    float: left; 
+    width: 100%; 
+    vertical-align:middle; 
+    height: 100%; 
+    background-color:navy; 
+    text-align:center; 
+    font-size: 30px; 
+    color: white; 
+    border-bottom: black 2px solid;
+    font-family: Impact;
+}
+
+#izquierda{
+    float: left; 
+    width: 20%; 
+    height: 99%;
+    color: white;
+    background-color: blue;
+    border-right: black 2px solid;
+    border-bottom: black 2px solid;
+    padding-top: 2%;
+    text-align: center;
+    overflow: auto;
+}
+
+#derecha{
+    float: left; 
+    width: 100%; 
+    height: 80%;
+    border-bottom: 0;
+    padding: 2%;
+    overflow: auto;
+}
+
+.invisible{
+    float: left; 
+    width: 75%; 
+    height: 80%;
+    border-bottom: 0;
+    padding: 2%;
+    overflow: auto;
+    position: absolute;
+    visibility: hidden;
+}
+
+#derecha-abajo{
+    height: 20%;
+    float: left; 
+    width: 100%; 
+    border-top: black 2px solid;
+    border-bottom: 0;
+    padding: 1%;
+    overflow: auto;
+}
+
+button{
+    border-radius: 300px;
+    font-size: 13px;
+    margin: 5px auto;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-decoration: none;
+    padding: 1em 1.75em;
+    background-color: #768ffe;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    line-height: 1em;
+    color: #ffffff;
+    border: none;
+    transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
+    margin-bottom: 5%;
+    width: 60%;
+}
+
+#medio{
+    float: left; 
+    width: 55%; 
+    height: 80%;
+}
+
+#mas-derecho{
+    float: right; 
+    width: 20%; 
+    height: 80%;
+    padding: 15px;
+}
+
+button:hover{
+    background: #ffffff;
+    color: #768ffe;
+    box-shadow: inset 0 0 0 3px #768ffe;
+}
+
+.imagen{
+    width: 15%;
+    font-size: 70px;
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+button:disabled{
+    opacity: 0.5;
+}
+
+textarea{
+    width: 95%;
+    height: 90%;
+}
