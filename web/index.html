@@ -45,6 +45,12 @@ and open the template in the editor.
             document.getElementById("sentencias").value=contenidoSentencias;
         }
         
+         function habilitar2(){
+            document.getElementById("divTabla2").style.visibility="visible";
+            document.getElementById("derecha").style.visibility="hidden";
+            document.getElementById("divConsulta").style.visibility="hidden";
+        }
+        
         function explicarCrearBase(){
             document.getElementById("explicaciones").value=explicarBase;
         }
@@ -62,6 +68,7 @@ and open the template in the editor.
             document.getElementById("derecha").style.visibility="hidden";
             document.getElementById("divConsulta").style.visibility="hidden";
         }
+        
         
         function crearConsulta(){
             document.getElementById("divTabla").style.visibility="hidden";
@@ -88,8 +95,15 @@ and open the template in the editor.
                 </div>
                 <div id="medio">
                     <div class="invisible" id="divTabla">
+                            <form action="tabla.html" method="get">
+                            <p>Tabla: <input type="text" name="nombretabla" size="42"></p>
+                            <p>Numero de Atributos: <input type="number" name="AtribtosNum" min="1"></p>
+                           <button name="botonTabla" id="boton3" onclick="habilitar2()">Crear tabla</button>
+                          </form>
+                                        
                         Crear aqui formulario, que sirva tambien de tutorial, para hacer tablas
                     </div>
+                    
                     <div class="invisible" id="divConsulta">
                         Crear aqui formulario, que sirva tambien de tutorial, para hacer consultas
                     </div>
