@@ -93,10 +93,9 @@ and open the template in the editor.
     border: none;
     transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
     margin-bottom: 5%;
-    width: 10%;
+    width: 20%;
 }
-
-#AgregaBoton{
+#EnviaBoton{
     border-radius: 300px;
     font-size: 13px;
     margin: 5px auto;
@@ -113,6 +112,62 @@ and open the template in the editor.
     transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
     margin-bottom: 5%;
     width: 15%;
+}
+#AgregaBoton{
+    border-radius: 300px;
+    font-size: 13px;
+    margin: 5px auto;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-decoration: none;
+    padding: 1em 1.75em;
+    background-color: #768ffe;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    line-height: 1em;
+    color: #ffffff;
+    border: none;
+    transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
+    margin-bottom: 5%;
+    width: 40%;
+}
+#BotonConsulta{
+    border-radius: 300px;
+    font-size: 13px;
+    margin: 5px auto;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-decoration: none;
+    padding: 1em 1.75em;
+    background-color: #768ffe;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    line-height: 1em;
+    color: #ffffff;
+    border: none;
+    transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
+    margin-bottom: 5%;
+    width: 20%;
+}
+#RellenaBoton{
+
+        border-radius: 300px;
+        font-size: 13px;
+        margin: 5px auto;
+        text-transform: uppercase;
+        font-weight: 400;
+        text-decoration: none;
+        padding: 1em 1.75em;
+        background-color: #768ffe;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        line-height: 1em;
+        color: #ffffff;
+        border: none;
+        transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
+        margin-bottom: 5%;
+        width: 100%;
+
 }
 
 
@@ -136,6 +191,7 @@ button{
 }
 #divTabla{
     height: 50%;
+    width: 36%;
 }
 #medio{
     float: left; 

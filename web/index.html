@@ -12,7 +12,11 @@ and open the template in the editor.
         <link href="css/Index.css" rel="stylesheet" type="text/css"/>
         <link href="font-Awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <script>
-
+            var ConsultaChida = "";
+            var ContadorTablas=0;
+            var NombreDeLasTablas=['0'];
+            var NombreDeLosAtributos=['0'];
+            var Numeros=['0','1','2','3','4','5','6','7','8','9','0'];
         var explicarBase="Para crear una base de datos se utiliza la sentencia (línea de código) 'create database' seguida del nombre"+
                             " de la base de datos. Después, tenemos que escribir 'use' seguido del nombre de la base, esto para"+
                             " indicar que vamos a utilizar esta base de datos y así poder manipularla."+
@@ -62,11 +66,11 @@ and open the template in the editor.
        
        
        
-       
+        var SeparadorAtributos = [0,0,0];
         var contenidoSentencias="";
         var GenerarTabla = 0;
          
-        function habilitar(){
+    function habilitar(){
             document.getElementById("boton1").disabled=false;
             document.getElementById("boton2").disabled=false;
             document.getElementById("iniciar").disabled=true;
@@ -78,77 +82,194 @@ and open the template in the editor.
             document.getElementById("sentencias").value=contenidoSentencias;
         }
         
-        var NombreDeTabla;
+        var NombreDeTabla=["Saab", "Volvo", "BMW"];
         var Tabla;
         var TablaGenerada;
+        var NombreDeTablaUno;
+        
+        
+        
         
         function enviar(form){
+            SeparadorAtributos[ContadorTablas-1]=(NumeroAtributos-1);
+            ContadorTablas=ContadorTablas-1;
+            NumeroAtributos=NumeroAtributos-1;
 
-<<<<<<< HEAD
-        var NombreDeTabla=Tabla.nombretabla.value;
-        var Tabla = document.getElementById("mas-derecho");
-        var TablaGenerada="";
-=======
-         NombreDeTabla=CrearTabla.nombretabla.value;
-         Tabla = document.getElementById("mas-derecho");
-         TablaGenerada="";
->>>>>>> 02518d577c6495c74a5aaaace83ee51995e7499f
+            var Tabla = document.getElementById("mas-derecho");
+        
+        if(ContadorTablas>0){
+            for(var f=0;f<=ContadorTablas;f++){
+            NombreDeTabla[f]=CrearTabla[f].nombretabla.value;
+            NombreDeLasTablas[f]=CrearTabla[f].nombretabla.value;
+            }
 
+        }else{
+         NombreDeTablaUno=CrearTabla.nombretabla.value;
+         NombreDeLasTablas[0]=CrearTabla.nombretabla.value;
+        }
 
+        console.log(NombreDeLasTablas);
+        
 
-        TablaGenerada += '<table>'+
+        var TablaGenerada=["<table>","<table>","<table>"];
+
+            if(ContadorTablas>0){
+        for(var f=0;f<=ContadorTablas;f++){
+        TablaGenerada[f] = '<table>'+
             '<tr>'+
             '<th>Nombre</th>'+
             '<th>Tipo</th>'+
             '<th>Tamaño</th>'+
             '<th>Valor</th>'+
             '</tr>';
-
-if(NumeroAtributos>1){
-        for(var k=0;k<NumeroAtributos;k++){
-            
-            TablaGenerada += '<tr>'+
-                '<td>'+Atributos[k].NombreAtributo.value+'</td>'+
-                '<td>'+Atributos[k].tipoDato.value+'</td>'+
-                '<td>'+Atributos[k].TamanoAtributo.value+'</td>'+
-                '<td>'+Atributos[k].Valor.value+'</td></tr>';
-                
         }
-}
-else{
-    TablaGenerada += '<tr>'+
-                '<td>'+Atributos.NombreAtributo.value+'</td>'+
-                '<td>'+Atributos.tipoDato.value+'</td>'+
-                '<td>'+Atributos.TamanoAtributo.value+'</td>'+
-                '<td>'+Atributos.Valor.value+'</td></tr>';
-}
-
-        TablaGenerada += '</table>';
-        Tabla.innerHTML = '<h3>'+NombreDeTabla+'</h3><br>';
-        Tabla.innerHTML += TablaGenerada+'<br>Sentencia para crear la tabla: <br>';
-
-        var SentenciaGenerada = "CREATE TABLE "+NombreDeTabla+" (";
-
-        if(NumeroAtributos>1){
-            for(var k=0;k<NumeroAtributos;k++){
-            
-                SentenciaGenerada += Atributos[k].NombreAtributo.value+' '+Atributos[k].tipoDato.value+'('+
-                Atributos[k].TamanoAtributo.value+')';
-
-                if(k!=(NumeroAtributos-1)){
-                SentenciaGenerada+=', ';}
-                
             }
-        SentenciaGenerada +=');'
+        else{
+            TablaGenerada = '<table>'+
+            '<tr>'+
+            '<th>Nombre</th>'+
+            '<th>Tipo</th>'+
+            '<th>Tamaño</th>'+
+            '<th>Valor</th>'+
+            '</tr>';
         }
-       else{
-            SentenciaGenerada += Atributos.NombreAtributo.value+' '+Atributos.tipoDato.value+'('+
-                Atributos.TamanoAtributo.value+'));';
-        }   
-        Tabla.innerHTML+=SentenciaGenerada
+
+        //TODO:Pasar atributos a una var global
+
+        var k =0;
+       
+       
+       
+       
+        for(var g=0;g<=ContadorTablas;g++){
+
+            if(NumeroAtributos>0 && ContadorTablas>0){
+
+                    for(k;k<=SeparadorAtributos[g];k++){
+
+                        TablaGenerada[g] += '<tr>'+
+                            '<td>'+Atributos[k].NombreAtributo.value+'</td>'+
+                            '<td>'+Atributos[k].tipoDato.value+'</td>'+
+                            '<td>'+Atributos[k].TamanoAtributo.value+'</td>'+
+                            '<td>'+Atributos[k].Valor.value+'</td></tr>';
+                        NombreDeLosAtributos[k]=Atributos[k].NombreAtributo.value;
+                            
+
+                    }
+                    TablaGenerada[g] += '</table>';
+            }
+            else if(NumeroAtributos==0 && ContadorTablas==0){
+                TablaGenerada += '<tr>'+
+                            '<td>'+Atributos.NombreAtributo.value+'</td>'+
+                            '<td>'+Atributos.tipoDato.value+'</td>'+
+                            '<td>'+Atributos.TamanoAtributo.value+'</td>'+
+                            '<td>'+Atributos.Valor.value+'</td></tr>';
+                            NombreDeLosAtributos[0]=Atributos.NombreAtributo.value;
+            }
+            else if(NumeroAtributos>0 && ContadorTablas==0){
+
+
+                    for(k;k<=SeparadorAtributos[g];k++){
+
+                        TablaGenerada += '<tr>'+
+                            '<td>'+Atributos[k].NombreAtributo.value+'</td>'+
+                            '<td>'+Atributos[k].tipoDato.value+'</td>'+
+                            '<td>'+Atributos[k].TamanoAtributo.value+'</td>'+
+                            '<td>'+Atributos[k].Valor.value+'</td></tr>';
+                        NombreDeLosAtributos[k]=Atributos[k].NombreAtributo.value;
+                            
+
+                    }
+
+
+
+
+
+            }
+
+
+        }
+
+
+        if(ContadorTablas>0){
+            var k=0;
+            var SentenciaGenerada=["1","2"];
+
+            for(var o=0;o<=ContadorTablas;o++){
+                Tabla.innerHTML += '<h3>'+NombreDeTabla[o]+'</h3><br>';
+                Tabla.innerHTML += TablaGenerada[o];
+                SentenciaGenerada[o] = "CREATE TABLE "+NombreDeTabla[o]+" (";
+            
+
+
+                for(k;k<=SeparadorAtributos[o];k++){
+                
+                    SentenciaGenerada[o] += Atributos[k].NombreAtributo.value+' '+Atributos[k].tipoDato.value+'('+
+                    Atributos[k].TamanoAtributo.value+')';
+                
+                    if(k!=(SeparadorAtributos[o])){
+                    SentenciaGenerada[o]+=', ';                
+                    }
+                }
+
+            SentenciaGenerada[o] +=');';
+
+
+
+            Tabla.innerHTML+=SentenciaGenerada[o];
+            }
+
+        }
+
+
+
+
+
+        else{
+
+            Tabla.innerHTML += '<h3>'+NombreDeTablaUno+'</h3><br>';
+            Tabla.innerHTML += TablaGenerada;
+
+
+
+
+            var SentenciaGenerada = "CREATE TABLE "+NombreDeTablaUno+" (";
+
+            if(NumeroAtributos>1){
+                for(var k=0;k<=NumeroAtributos;k++){
+                
+                    SentenciaGenerada += Atributos[k].NombreAtributo.value+' '+Atributos[k].tipoDato.value+'('+
+                    Atributos[k].TamanoAtributo.value+')';
+                
+                    if(k!=(NumeroAtributos)){
+                    SentenciaGenerada+=', ';}
+                    
+                }
+            SentenciaGenerada +=');'
+            }
+            else{
+                SentenciaGenerada += Atributos.NombreAtributo.value+' '+Atributos.tipoDato.value+'('+
+                    Atributos.TamanoAtributo.value+'));';
+            }   
+            Tabla.innerHTML+=SentenciaGenerada;
+
+        }
+
+
+
+
+
+
+
+
+
+        console.log(NombreDeLosAtributos);
+
+
+       
         
 
-        }
+    }
 
 
         var NumeroAtributos = 0;
@@ -163,31 +284,24 @@ else{
         function explicarCrearConsulta(){
             document.getElementById("explicaciones").value=explicarConsulta;
         }
+        
         var Formulario;
+        var bandera=0;
         function crearTabla(){
+            
             document.getElementById("divTabla").style.visibility="visible";
             document.getElementById("derecha").style.visibility="hidden";
             document.getElementById("divConsulta").style.visibility="hidden";
-<<<<<<< HEAD
             var Formulario = document.getElementById("divTabla");
+            if(bandera==0){
             Formulario.innerHTML += '<form name="Tabla" action="index.html" method="get">'+
                            '<input id="AgregaBoton" type="button" name="botonTabla" onclick="agregarTabla()" value="Agregar Tabla">'+
                            '<input id="AgregaBoton" type="button" name="botonTabla" onclick="agregar()" value="Agregar atributo">'+
-                           '<input id="EnviaBoton" type="button" onClick="enviar(CrearTabla.form,Atributos.form)" value="Enviar">'+
+                           '<input id="EnviaBoton" type="button" onClick="enviar(CrearTabla.form,Atributos.form)" value="Enviar"><br>'+
                            '</form>';                 
-                           
+            }
+            bandera=1; 
 
-=======
-            Formulario = document.getElementById("divTabla");
-            Formulario.innerHTML += '<form name="CrearTabla" action="index.html" method="get">'+
-                             
-                           'Nombre de La tabla: <input type="text" name="nombretabla" size="42">'+
-                           '<input id="EnviaBoton" type="button" onClick="enviar(this.form,Atributos.form)" value="Enviar"><br>'+
-                           '<input id="AgregaBoton" type="button" name="botonTabla" id="boton3" onclick="agregar()" value="Agregar atributo"></button>'+
-                           '<br>'+
-                           '<h3>Atributos:</h3>'+
-                           '</form>';
->>>>>>> 02518d577c6495c74a5aaaace83ee51995e7499f
 
 
 
@@ -195,14 +309,18 @@ else{
         }
         
         function agregarTabla(){
+            if(ContadorTablas!=0){
+            SeparadorAtributos[ContadorTablas-1]=(NumeroAtributos-1);
+            }
+            ContadorTablas+=1;
             var Formulario = document.getElementById("divTabla");
-            Formulario.innerHTML += '<form name="CrearTabla" action="index.html" method="get">'+
+            Formulario.innerHTML += '<hr style="color: #000000;" size="7" noshade="noshade"/><form name="CrearTabla" action="index.html" method="get">'+
                            'Nombre de La tabla: <input type="text" name="nombretabla" size="42"><br>'+
                            '<br>'+
                            '<h3>Atributos:</h3>'+
                            '</form>';                 
             agregar();
-            Formulario.innerHTML += '<br><br><br>'
+            Formulario.innerHTML += '<br><br>'
                            
         }
 
@@ -220,10 +338,12 @@ else{
             document.getElementById("derecha").style.visibility="hidden";
             document.getElementById("divConsulta").style.visibility="hidden";
         }
-
+        
         function agregar(){
          Formulario = document.getElementById("divTabla");
+
             NumeroAtributos +=1;
+
             Formulario.innerHTML += '<form name="Atributos" action="index.html" method="get">'+'<br>Nombre: <input type="text" name="NombreAtributo">'+
                             'Tipo: <select name="tipoDato">'+
                                    
@@ -258,7 +378,7 @@ else{
 
 
 
-                                  '</select>'+
+                                  '</select><br>'+
                            'Tamaño: <input name="TamanoAtributo" type="number" min="1" max="1000" step="1">'+
                            'Valor: <input type="text" name="Valor">'+
                           '</form>';
@@ -269,15 +389,42 @@ else{
 var tabla;
 var atributo;
 var condicion;
+
+
+        function InsertarPalabra(nombre){
+            console.log(nombre.value);
+            ConsultaChida +=" "+nombre.value;
+            document.getElementById("sql").value=ConsultaChida;
+        }
+
+
+        function InsertarTabla(){
+            tabla= document.CrearConsulta.comboTablas.options[document.CrearConsulta.comboTablas.selectedIndex].text;
+            ConsultaChida +=" "+tabla;
+            document.getElementById("sql").value=ConsultaChida;
+        }
+        
+        function InsertarAtributo(){
+            atributo= document.CrearConsulta.comboAtributo.options[document.CrearConsulta.comboAtributo.selectedIndex].text
+            ConsultaChida +=" "+atributo;
+            document.getElementById("sql").value=ConsultaChida;
+        }
+
+        function InsertarNumero(){
+            numero= condicion= document.CrearConsulta.comboCondicion.options[document.CrearConsulta.comboCondicion.selectedIndex].text
+            ConsultaChida +=" "+numero;
+            document.getElementById("sql").value=ConsultaChida;
+        }
+
+
         function Consulta(){
             document.getElementById("sql").value="";
             document.getElementById("divConsulta").style.visibility="visible";
-            tabla= document.CrearConsulta.comboTablas.options[document.CrearConsulta.comboTablas.selectedIndex].text
-            atributo= document.CrearConsulta.comboAtributo.options[document.CrearConsulta.comboAtributo.selectedIndex].text
-            condicion= document.CrearConsulta.comboCondicion.options[document.CrearConsulta.comboCondicion.selectedIndex].text
-            contenidoSentencias="select "+tabla+" from "+atributo+" where "+condicion+";";
-            document.getElementById("sql").value=contenidoSentencias;
+
         }
+
+
+
 
          function myOnLoad() {
             cargar_tablas()
@@ -288,36 +435,24 @@ var condicion;
         function cargar_tablas() {
 
 
-        var array = [NombreDeTabla];
+        var array = NombreDeLasTablas;
          array.sort();
         insertar("comboTablas", array);
         }
 
           function cargar_atributos() {
+          
           var array= new Array(); ;
-          if(NumeroAtributos>1){
-                for(var k=0;k<NumeroAtributos;k++){
-              array.push(Atributos[k].NombreAtributo.value);
-             }
-            }  else {
-                    array.push(Atributos.NombreAtributo.value);
-            }
 
-              
-
+            var array = NombreDeLosAtributos;
               array.sort();
               insertar("comboAtributo", array);
+        
         }
 
           function cargar_condicion() {
             var array= new Array(); ;
-          if(NumeroAtributos>1){
-                for(var k=0;k<NumeroAtributos;k++){
-              array.push(Atributos[k].NombreAtributo.value);
-             }
-            }  else {
-                    array.push(Atributos.NombreAtributo.value);
-            }
+            var array = Numeros;
          array.sort();
         insertar("comboCondicion", array);
         }
@@ -355,7 +490,7 @@ var condicion;
                     <button name="boton1" id="boton1" onclick="crearTabla()" disabled="">Crear tabla</button><button class="imagen fa fa-info" onclick="explicarCrearTabla()" id="explicarCrearTabla"  title="Saber más..."></button>
                     <br>
                     <button name="boton2" id="boton2" onclick="crearConsulta()" >Crear consulta</button><button class="imagen fa fa-info" onclick="explicarCrearConsulta()" id="explicarCrearConsulta" title="Saber más..."></button>
-                    <button name="botonConsulta" id="botonConsulta" onclick="Consulta()" disabled="">Crear Consulta</button>
+
                  </div>
                 
                 
@@ -369,15 +504,36 @@ var condicion;
                     <div class="invisible" id="divConsulta">
                 <form name="CrearConsulta">
                 <span >
-                    Crea una cosulta
+                    Crea una cosulta<br>
                 </span>
-
+                <input onclick="InsertarPalabra(this)" type="button" value="SELECT">
+                <input onclick="InsertarPalabra(this)" type="button" value="FROM">
+                <input onclick="InsertarPalabra(this)" type="button" value="WHERE">
+                <input onclick="InsertarPalabra(this)" type="button" value="(">
+                <input onclick="InsertarPalabra(this)" type="button" value=")">
+                <input onclick="InsertarPalabra(this)" type="button" value="AS">
+                <input onclick="InsertarPalabra(this)" type="button" value="=">
+                <input onclick="InsertarPalabra(this)" type="button" value="<">
+                <input onclick="InsertarPalabra(this)" type="button" value=">">
+                <input onclick="InsertarPalabra(this)" type="button" value="'">
+                <input onclick="InsertarPalabra(this)" type="button" value="*">
+                <input onclick="InsertarPalabra(this)" type="button" value=";">
+                <input onclick="InsertarPalabra(this)" type="button" value=",">
+                <input onclick="InsertarPalabra(this)" type="button" value="HAVING"><br>
+                <input onclick="InsertarPalabra(this)" type="button" value="IN">
+                <input onclick="InsertarPalabra(this)" type="button" value="INNER">
+                <input onclick="InsertarPalabra(this)" type="button" value="JOIN">
+                <input onclick="InsertarPalabra(this)" type="button" value="OR">
+                <input onclick="InsertarPalabra(this)" type="button" value="AND">
+                
+                <input onclick="InsertarPalabra(this)" type="button" value="DROP">
                             <div>
                                 <span>Elige tu tabla</span>
                                 <div>
                                     <select name="comboTablas">
                                         <option>Seleccione una tabla.</option>
                                     </select>
+                                    <input type="button" value="Insertar" onclick="InsertarTabla()">
                                 </div>
                                 <span></span>
                             </div>
@@ -387,16 +543,18 @@ var condicion;
                                 <div>
                                     <select name="comboAtributo">
                                         <option>Seleccione una atributo.</option>
+                                        <input type="button" value="Insertar" onclick="InsertarAtributo()">
                                     </select>
                                 </div>
                                 <span ></span>
                             </div>
 
                             <div >
-                                <span>Condiciones</span>
+                                <span>Numeros</span>
                                 <div>
                                     <select name="comboCondicion">
-                                        <option>Seleccione una condicion.</option>
+                                        <option>Seleccione un numero.</option>
+                                        <input type="button" value="Insertar" onclick="InsertarNumero()">
                                     </select>
                                 </div>
                                 <span ></span>
@@ -405,11 +563,11 @@ var condicion;
 
                             <div>
                                 <div>
-
+                                        <input type="button" name="BotonConsulta" id="BotonConsulta" onclick="Consulta()" value="Checar Consulta"></button>
                                 </div>
                             </div>
                         </form>
-                        <textarea disabled="" id="sql" readonly=""  style="height:300px; width: 650px"></textarea>
+                        <textarea disabled="" id="sql" readonly=""  style="height:100px; width: 650px"></textarea>
                     </div>
                     
                     <div id="derecha">
@@ -429,7 +587,7 @@ Nota: Todas las sentencias deben terminar con punto y coma (;)
                     </div>
                 </div>
                 <div id="mas-derecho">
-                    Aqui se desplegaran las tablas que se creen o las consultas que se realicen.
+                    Aqui se desplegaran las tablas que se creen.
                 </div>
             </div>
         </div>  
