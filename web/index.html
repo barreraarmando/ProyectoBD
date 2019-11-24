@@ -6,13 +6,13 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Proyecto Base de Datos</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/Index.css" rel="stylesheet" type="text/css"/>
         <link href="font-Awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <script>
-            
+
         var explicarBase="Para crear una base de datos se utiliza la sentencia (línea de código) 'create database' seguida del nombre"+
                             " de la base de datos. Después, tenemos que escribir 'use' seguido del nombre de la base, esto para"+
                             " indicar que vamos a utilizar esta base de datos y así poder manipularla."+
@@ -30,7 +30,39 @@ and open the template in the editor.
                                 "a las condiciones que deseemos. Siguiendo con el ejemplo anterior, una consulta nos permite obtener "+
                                 "el nombre de los empleados que tengan el puesto de gerente o la dirección de un empleado con un "+
                                 "teléfono específico; por citar algunos ejemplos.\n\nOprime el botón y te explicaremos paso a paso cómo "+
-                                "crear una de esta s consultas.";
+                                "crear una de estas consultas.";
+        var explicarDatos="INT (INTEGER): Ocupación de 4 bytes con valores entre -2147483648 y 2147483647 o entre 0 y 4294967295."+
+                                "SMALLINT: Ocupación de 2 bytes con valores entre -32768 y 32767 o entre 0 y 65535."+
+                                "TINYINT: Ocupación de 1 bytes con valores entre -128 y 127 o entre 0 y 255."+
+                                "MEDIUMINT: Ocupación de 3 bytes con valores entre -8388608 y 8388607 o entre 0 y 16777215."+
+                                "BIGINT: Ocupación de 8 bytes con valores entre -8388608 y 8388607 o entre 0 y 16777215."+
+                                "DECIMAL (NUMERIC): Almacena los números de coma flotante como cadenas o string."+
+                                "FLOAT (m,d): Almacena números de coma flotante, donde ‘m’ es el número de dígitos de la parte entera y ‘d’ el número de decimales."+
+                                "DOUBLE (REAL): Almacena número de coma flotante con precisión doble. Igual que FLOAT, la diferencia es el rango de valores posibles."+
+                                "BIT (BOOL, BOOLEAN): Número entero con valor 0 o 1."+
+                                "DATE: Válido para almacenar una fecha con año, mes y día, su rango oscila entre  ‘1000-01-01′ y ‘9999-12-31′."+
+                                "DATETIME: Almacena una fecha (año-mes-día) y una hora (horas-minutos-segundos), su rango oscila entre  ‘1000-01-01 00:00:00′ y ‘9999-12-31 23:59:59′."+
+                                "TIME: Válido para almacenar una hora (horas-minutos-segundos). Su rango de horas oscila entre -838-59-59 y 838-59-59. El formato almacenado es ‘HH:MM:SS’."+
+                                "TIMESTAMP: Almacena una fecha y hora UTC. El rango de valores oscila entre ‘1970-01-01 00:00:01′ y ‘2038-01-19 03:14:07′."+
+                                "YEAR: Almacena un año dado con 2 o 4 dígitos de longitud, por defecto son 4. El rango de valores oscila entre 1901 y 2155 con 4 dígitos. Mientras que con 2 dígitos el rango es desde 1970 a 2069  (70-69)."+
+                                "CHAR: Ocupación fija cuya longitud comprende de 1 a 255 caracteres."+
+                                "VARCHAR: Ocupación variable cuya longitud comprende de 1 a 255 caracteres."+
+                                "TINYBLOB: Una longitud máxima de 255 caracteres. Válido para objetos binarios como son un fichero de texto, imágenes, ficheros de audio o vídeo. No distingue entre minúculas y mayúsculas."+
+                                "BLOB: Una longitud máxima de 65.535 caracteres. Válido para objetos binarios como son un fichero de texto, imágenes, ficheros de audio o vídeo. No distingue entre minúculas y mayúsculas."+
+                                "MEDIUMBLOB: Una longitud máxima de 16.777.215 caracteres. Válido para objetos binarios como son un fichero de texto, imágenes, ficheros de audio o vídeo. No distingue entre minúculas y mayúsculas."+
+                                "LONGBLOB: Una longitud máxima de 4.294.967.298 caracteres. Válido para objetos binarios como son un fichero de texto, imágenes, ficheros de audio o vídeo. No distingue entre minúculas y mayúsculas."+
+                                "SET: Almacena 0, uno o varios valores una lista con un máximo de 64 posibles valores."+
+                                "ENUM: Igual que SET pero solo puede almacenar un valor."+
+                                "TINYTEXT: Una longitud máxima de 255 caracteres. Sirve para almecenar texto plano sin formato. Distingue entre minúculas y mayúsculas."+
+                                "TEXT:Una longitud máxima de 65.535 caracteres. Sirve para almecenar texto plano sin formato. Distingue entre minúculas y mayúsculas."+
+                                "MEDIUMTEXT:Una longitud máxima de 16.777.215 caracteres. Sirve para almecenar texto plano sin formato. Distingue entre minúculas y mayúsculas."+
+                                "LONGTEXT: Una longitud máxima de 4.294.967.298 caracteres. Sirve para almecenar texto plano sin formato. Distingue entre minúculas y mayúsculas.";
+
+
+       
+       
+       
+       
         var contenidoSentencias="";
          
         function habilitar(){
@@ -46,6 +78,40 @@ and open the template in the editor.
         }
         
         
+        function enviar(form){
+
+        var NombreDeTabla=CrearTabla.nombretabla.value;
+        var Tabla = document.getElementById("mas-derecho");
+        var TablaGenerada="";
+
+
+
+        TablaGenerada += '<table>'+
+            '<tr>'+
+            '<th>Nombre</th>'+
+            '<th>Tipo</th>'+
+            '<th>Tamaño</th>'+
+            '<th>Valor</th>'+
+            '</tr>';
+
+        for(var k=0;k<NumeroAtributos;k++){
+            
+            TablaGenerada += '<tr>'+
+                '<td>'+Atributos[k].NombreAtributo.value+'</td>'+
+                '<td>'+Atributos[k].tipoDato.value+'</td>'+
+                '<td>'+Atributos[k].TamanoAtributo.value+'</td>'+
+                '<td>'+Atributos[k].Valor.value+'</td></tr>';
+                
+        }
+        TablaGenerada += '</table>';
+        Tabla.innerHTML = NombreDeTabla+'<br>';
+        Tabla.innerHTML += TablaGenerada;
+
+
+        }
+
+
+        var NumeroAtributos = 0;
         function explicarCrearBase(){
             document.getElementById("explicaciones").value=explicarBase;
         }
@@ -57,14 +123,27 @@ and open the template in the editor.
         function explicarCrearConsulta(){
             document.getElementById("explicaciones").value=explicarConsulta;
         }
-        
+
         function crearTabla(){
             document.getElementById("divTabla").style.visibility="visible";
             document.getElementById("derecha").style.visibility="hidden";
             document.getElementById("divConsulta").style.visibility="hidden";
-        }
-        
 
+            var Formulario = document.getElementById("divTabla");
+            Formulario.innerHTML += '<form name="CrearTabla" action="index.html" method="get">'+
+                             
+                           'Nombre de La tabla: <input type="text" name="nombretabla" size="42">'+
+                           '<input id="EnviaBoton" type="button" onClick="enviar(this.form,Atributos.form)" value="Enviar"><br>'+
+                           '<input id="AgregaBoton" type="button" name="botonTabla" id="boton3" onclick="agregar()" value="Agregar atributo"></button>'+
+                           '<br>'+
+                           '<h3>Atributos:</h3>'+
+                           '</form>';
+                           
+ 
+
+
+
+        }
         
         
         function crearConsulta(){
@@ -73,7 +152,6 @@ and open the template in the editor.
             document.getElementById("divConsulta").style.visibility="visible";
             document.getElementById("botonConsulta").disabled=false;
         }
-
         function Consulta(){
 
             document.getElementById("sql").value="";
@@ -84,32 +162,90 @@ and open the template in the editor.
             contenidoSentencias="select "+atributo+" from "+atributo+" where "+condicion+";";
             document.getElementById("sql").value=contenidoSentencias;
         }
+        function habilitar2(){
+            document.getElementById("divTabla2").style.visibility="visible";
+            document.getElementById("derecha").style.visibility="hidden";
+            document.getElementById("divConsulta").style.visibility="hidden";
+        }
+
+        function agregar(){
+            var Formulario = document.getElementById("divTabla");
+            NumeroAtributos +=1;
+            Formulario.innerHTML += '<form name="Atributos" action="index.html" method="get">'+'<br>Nombre: <input type="text" name="NombreAtributo">'+
+                            'Tipo: <select name="tipoDato">'+
+                                   
+                            '<option>INT</option>'+
+                            '<option>SMALLINT</option>'+
+                            '<option>TINYINT</option>'+
+                            '<option>MEDIUMINT</option>'+
+                            '<option>BIGINT</option>'+
+                            '<option>DECIMAL</option>'+
+                            '<option>FLOAT</option>'+
+                            '<option>DOUBLE</option>'+
+                            '<option>BIT</option>'+
+                            
+                            '<option>DATE</option>'+
+                            '<option>DATETIME</option>'+
+                            '<option>TIME</option>'+
+                            '<option>TIMESTAMP</option>'+
+                            '<option>YEAR</option>'+
+                            
+                            '<option>CHAR</option>'+
+                            '<option>VARCHAR</option>'+
+                            '<option>TINYBLOB</option>'+
+                            '<option>BLOB</option>'+
+                            '<option>MEDIUMBLOB</option>'+
+                            '<option>LONGBLOB</option>'+
+                            '<option>SET</option>'+
+                            '<option>ENUM</option>'+
+                            '<option>TINYTEXT</option>'+
+                            '<option>TEXT</option>'+
+                            '<option>MEDIUMTEXT</option>'+
+                            '<option>LONGTEXT</option>'+
+
+
+
+                                  '</select>'+
+                           'Tamaño: <input name="TamanoAtributo" type="number" min="1" max="1000" step="1">'+
+                           'Valor: <input type="text" name="Valor">'+
+                          '</form>';
+
+
+        }
         </script>
     </head>
     
     <body>
         <div id="central">
+            
+            
             <div style =" display: table;float: left; width: 100%; height: 5% ">
                 <div id="titulo">
                     <p id="p1" style="padding: 0px; margin: 0px;">Manejador de bases de datos para novatos</p>
                 </div>
             </div>
+            
+            
             <div style =" display: table;float: left; width: 100%; height: 95% ">
+                
+                
                 <div id="izquierda">
                     <button id="iniciar" onclick="habilitar()">Crear base</button><button class="imagen fa fa-info" id="explicarCrearBase" onclick="explicarCrearBase()" title="Saber más..."></button>
                     <br>
                     <button name="boton1" id="boton1" onclick="crearTabla()" disabled="">Crear tabla</button><button class="imagen fa fa-info" onclick="explicarCrearTabla()" id="explicarCrearTabla"  title="Saber más..."></button>
-
                     <br>
                     <button name="boton2" id="boton2" onclick="crearConsulta()" >Crear consulta</button><button class="imagen fa fa-info" onclick="explicarCrearConsulta()" id="explicarCrearConsulta" title="Saber más..."></button>
                     <button name="botonConsulta" id="botonConsulta" onclick="Consulta()" disabled="">Crear Consulta</button>
-                </div>
+                 </div>
+                
+                
                 <div id="medio">
+                    
+                    
                     <div class="invisible" id="divTabla">
-
-
-                        Crear aqui formulario, que sirva tambien de tutorial, para hacer tablas
+                            
                     </div>
+                    
                     <div class="invisible" id="divConsulta">
                         <form name="CrearConsulta">
 				<span >
@@ -166,9 +302,12 @@ and open the template in the editor.
                             </div>
                         </form>
                     </div>
+                    
                     <div id="derecha">
                         <textarea disabled="" id="sentencias" readonly="" ></textarea>
                     </div>
+                    
+                    
                     <div id="derecha-abajo">
                         <textarea disabled="" id="explicaciones" readonly="" style="height: 90%">
 Una base de datos es un “almacén” que nos permite guardar grandes cantidades de información de forma organizada para que luego podamos encontrar y utilizar fácilmente. 
@@ -181,9 +320,8 @@ Nota: Todas las sentencias deben terminar con punto y coma (;)
                     </div>
                 </div>
                 <div id="mas-derecho">
-                    <div id="derecha">
-                        <textarea disabled="" id="sql" readonly="" ></textarea>
-                    </div>
+                    Aqui se desplegaran las tablas que se creen o las consultas que se realicen.
+                </div>
             </div>
         </div>  
     </body>

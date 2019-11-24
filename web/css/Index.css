@@ -11,9 +11,9 @@ and open the template in the editor.
 
 #central {
     position: absolute;
-    height: 600px;
-    width: 1200px;
-    margin: -300px 0 0 -600px;
+    height: 800px;
+    width: 2000px;
+    margin: -100px 0 0 -850px;
     top: 50%;
     left: 50%;
     display:table;
@@ -77,6 +77,44 @@ and open the template in the editor.
     padding: 1%;
     overflow: auto;
 }
+#EnviaBoton{
+    border-radius: 300px;
+    font-size: 13px;
+    margin: 5px auto;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-decoration: none;
+    padding: 1em 1.75em;
+    background-color: #768ffe;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    line-height: 1em;
+    color: #ffffff;
+    border: none;
+    transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
+    margin-bottom: 5%;
+    width: 10%;
+}
+
+#AgregaBoton{
+    border-radius: 300px;
+    font-size: 13px;
+    margin: 5px auto;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-decoration: none;
+    padding: 1em 1.75em;
+    background-color: #768ffe;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    line-height: 1em;
+    color: #ffffff;
+    border: none;
+    transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
+    margin-bottom: 5%;
+    width: 30%;
+}
+
 
 button{
     border-radius: 300px;
@@ -99,14 +137,14 @@ button{
 
 #medio{
     float: left; 
-    width: 55%; 
+    width: 40%; 
     height: 80%;
 }
 
 #mas-derecho{
     float: right; 
-    width: 20%; 
-    height: 80%;
+    width: 37.5%; 
+    height: 95%;
     padding: 15px;
     border-left: black 2px solid;
 }
@@ -133,3 +171,20 @@ textarea{
     width: 95%;
     height: 90%;
 }
+
+table {
+    border-collapse: collapse;
+  }
+
+table, th, td {
+    border: 1px solid black;
+  }
+
+th {
+    background-color: #768ffe;
+    color: white;
+    text-align: left;
+
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
