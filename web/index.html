@@ -78,12 +78,21 @@ and open the template in the editor.
             document.getElementById("sentencias").value=contenidoSentencias;
         }
         
+        var NombreDeTabla;
+        var Tabla;
+        var TablaGenerada;
         
         function enviar(form){
 
+<<<<<<< HEAD
         var NombreDeTabla=Tabla.nombretabla.value;
         var Tabla = document.getElementById("mas-derecho");
         var TablaGenerada="";
+=======
+         NombreDeTabla=CrearTabla.nombretabla.value;
+         Tabla = document.getElementById("mas-derecho");
+         TablaGenerada="";
+>>>>>>> 02518d577c6495c74a5aaaace83ee51995e7499f
 
 
 
@@ -136,22 +145,6 @@ else{
             SentenciaGenerada += Atributos.NombreAtributo.value+' '+Atributos.tipoDato.value+'('+
                 Atributos.TamanoAtributo.value+'));';
         }   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         Tabla.innerHTML+=SentenciaGenerada
         
 
@@ -170,11 +163,12 @@ else{
         function explicarCrearConsulta(){
             document.getElementById("explicaciones").value=explicarConsulta;
         }
-
+        var Formulario;
         function crearTabla(){
             document.getElementById("divTabla").style.visibility="visible";
             document.getElementById("derecha").style.visibility="hidden";
             document.getElementById("divConsulta").style.visibility="hidden";
+<<<<<<< HEAD
             var Formulario = document.getElementById("divTabla");
             Formulario.innerHTML += '<form name="Tabla" action="index.html" method="get">'+
                            '<input id="AgregaBoton" type="button" name="botonTabla" onclick="agregarTabla()" value="Agregar Tabla">'+
@@ -183,6 +177,17 @@ else{
                            '</form>';                 
                            
 
+=======
+            Formulario = document.getElementById("divTabla");
+            Formulario.innerHTML += '<form name="CrearTabla" action="index.html" method="get">'+
+                             
+                           'Nombre de La tabla: <input type="text" name="nombretabla" size="42">'+
+                           '<input id="EnviaBoton" type="button" onClick="enviar(this.form,Atributos.form)" value="Enviar"><br>'+
+                           '<input id="AgregaBoton" type="button" name="botonTabla" id="boton3" onclick="agregar()" value="Agregar atributo"></button>'+
+                           '<br>'+
+                           '<h3>Atributos:</h3>'+
+                           '</form>';
+>>>>>>> 02518d577c6495c74a5aaaace83ee51995e7499f
 
 
 
@@ -203,21 +208,13 @@ else{
 
 
         function crearConsulta(){
+            myOnLoad()
             document.getElementById("divTabla").style.visibility="hidden";
             document.getElementById("derecha").style.visibility="hidden";
             document.getElementById("divConsulta").style.visibility="visible";
             document.getElementById("botonConsulta").disabled=false;
         }
-        function Consulta(){
-
-            document.getElementById("sql").value="";
-            document.getElementById("divConsulta").style.visibility="visible";
-            var tabla= document.CrearConsulta.comboTabla.options[document.CrearConsulta.comboTabla.selectedIndex].text
-            var atributo= document.CrearConsulta.comboTabla.options[document.CrearConsulta.comboAtributo.selectedIndex].text
-            var condicion= document.CrearConsulta.comboTabla.options[document.CrearConsulta.comboCondicion.selectedIndex].text
-            contenidoSentencias="select "+atributo+" from "+atributo+" where "+condicion+";";
-            document.getElementById("sql").value=contenidoSentencias;
-        }
+        
         function habilitar2(){
             document.getElementById("divTabla2").style.visibility="visible";
             document.getElementById("derecha").style.visibility="hidden";
@@ -225,7 +222,7 @@ else{
         }
 
         function agregar(){
-            var Formulario = document.getElementById("divTabla");
+         Formulario = document.getElementById("divTabla");
             NumeroAtributos +=1;
             Formulario.innerHTML += '<form name="Atributos" action="index.html" method="get">'+'<br>Nombre: <input type="text" name="NombreAtributo">'+
                             'Tipo: <select name="tipoDato">'+
@@ -268,6 +265,73 @@ else{
 
 
         }
+
+var tabla;
+var atributo;
+var condicion;
+        function Consulta(){
+            document.getElementById("sql").value="";
+            document.getElementById("divConsulta").style.visibility="visible";
+            tabla= document.CrearConsulta.comboTablas.options[document.CrearConsulta.comboTablas.selectedIndex].text
+            atributo= document.CrearConsulta.comboAtributo.options[document.CrearConsulta.comboAtributo.selectedIndex].text
+            condicion= document.CrearConsulta.comboCondicion.options[document.CrearConsulta.comboCondicion.selectedIndex].text
+            contenidoSentencias="select "+tabla+" from "+atributo+" where "+condicion+";";
+            document.getElementById("sql").value=contenidoSentencias;
+        }
+
+         function myOnLoad() {
+            cargar_tablas()
+            cargar_atributos()
+            cargar_condicion()
+         }
+
+        function cargar_tablas() {
+
+
+        var array = [NombreDeTabla];
+         array.sort();
+        insertar("comboTablas", array);
+        }
+
+          function cargar_atributos() {
+          var array= new Array(); ;
+          if(NumeroAtributos>1){
+                for(var k=0;k<NumeroAtributos;k++){
+              array.push(Atributos[k].NombreAtributo.value);
+             }
+            }  else {
+                    array.push(Atributos.NombreAtributo.value);
+            }
+
+              
+
+              array.sort();
+              insertar("comboAtributo", array);
+        }
+
+          function cargar_condicion() {
+            var array= new Array(); ;
+          if(NumeroAtributos>1){
+                for(var k=0;k<NumeroAtributos;k++){
+              array.push(Atributos[k].NombreAtributo.value);
+             }
+            }  else {
+                    array.push(Atributos.NombreAtributo.value);
+            }
+         array.sort();
+        insertar("comboCondicion", array);
+        }
+
+
+        function insertar(domElement, array) {
+         var select = document.getElementsByName(domElement)[0];
+         for (value in array) {
+          var option = document.createElement("option");
+          option.text = array[value];
+          select.add(option);
+         }
+
+         }
         </script>
     </head>
     
@@ -303,20 +367,16 @@ else{
                     </div>
                     
                     <div class="invisible" id="divConsulta">
-                        <form name="CrearConsulta">
-				<span >
-					Crea una cosulta
-				</span>
+                <form name="CrearConsulta">
+                <span >
+                    Crea una cosulta
+                </span>
 
                             <div>
                                 <span>Elige tu tabla</span>
                                 <div>
-                                    <select name="comboTabla">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                    <select name="comboTablas">
+                                        <option>Seleccione una tabla.</option>
                                     </select>
                                 </div>
                                 <span></span>
@@ -326,11 +386,7 @@ else{
                                 <span>Eligue un atributo</span>
                                 <div>
                                     <select name="comboAtributo">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                        <option>Seleccione una atributo.</option>
                                     </select>
                                 </div>
                                 <span ></span>
@@ -340,11 +396,7 @@ else{
                                 <span>Condiciones</span>
                                 <div>
                                     <select name="comboCondicion">
-                                        <option >1</option>
-                                        <option>2</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                        <option>Seleccione una condicion.</option>
                                     </select>
                                 </div>
                                 <span ></span>
@@ -357,6 +409,7 @@ else{
                                 </div>
                             </div>
                         </form>
+                        <textarea disabled="" id="sql" readonly=""  style="height:300px; width: 650px"></textarea>
                     </div>
                     
                     <div id="derecha">
