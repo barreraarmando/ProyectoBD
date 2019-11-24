@@ -81,7 +81,7 @@ and open the template in the editor.
         
         function enviar(form){
 
-        var NombreDeTabla=CrearTabla.nombretabla.value;
+        var NombreDeTabla=Tabla.nombretabla.value;
         var Tabla = document.getElementById("mas-derecho");
         var TablaGenerada="";
 
@@ -176,21 +176,32 @@ else{
             document.getElementById("derecha").style.visibility="hidden";
             document.getElementById("divConsulta").style.visibility="hidden";
             var Formulario = document.getElementById("divTabla");
-            Formulario.innerHTML += '<form name="CrearTabla" action="index.html" method="get">'+
-                             
-                           'Nombre de La tabla: <input type="text" name="nombretabla" size="42">'+
-                           '<input id="EnviaBoton" type="button" onClick="enviar(this.form,Atributos.form)" value="Enviar"><br>'+
-                           '<input id="AgregaBoton" type="button" name="botonTabla" id="boton3" onclick="agregar()" value="Agregar atributo"></button>'+
-                           '<br>'+
-                           '<h3>Atributos:</h3>'+
-                           '</form>';
+            Formulario.innerHTML += '<form name="Tabla" action="index.html" method="get">'+
+                           '<input id="AgregaBoton" type="button" name="botonTabla" onclick="agregarTabla()" value="Agregar Tabla">'+
+                           '<input id="AgregaBoton" type="button" name="botonTabla" onclick="agregar()" value="Agregar atributo">'+
+                           '<input id="EnviaBoton" type="button" onClick="enviar(CrearTabla.form,Atributos.form)" value="Enviar">'+
+                           '</form>';                 
+                           
+
 
 
 
 
         }
         
-        
+        function agregarTabla(){
+            var Formulario = document.getElementById("divTabla");
+            Formulario.innerHTML += '<form name="CrearTabla" action="index.html" method="get">'+
+                           'Nombre de La tabla: <input type="text" name="nombretabla" size="42"><br>'+
+                           '<br>'+
+                           '<h3>Atributos:</h3>'+
+                           '</form>';                 
+            agregar();
+            Formulario.innerHTML += '<br><br><br>'
+                           
+        }
+
+
         function crearConsulta(){
             document.getElementById("divTabla").style.visibility="hidden";
             document.getElementById("derecha").style.visibility="hidden";

@@ -50,7 +50,7 @@ and open the template in the editor.
 
 #derecha{
     float: left; 
-    width: 100%; 
+    width: 40%; 
     height: 80%;
     border-bottom: 0;
     padding: 2%;
@@ -112,7 +112,7 @@ and open the template in the editor.
     border: none;
     transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
     margin-bottom: 5%;
-    width: 30%;
+    width: 15%;
 }
 
 
@@ -134,7 +134,9 @@ button{
     margin-bottom: 5%;
     width: 60%;
 }
-
+#divTabla{
+    height: 50%;
+}
 #medio{
     float: left; 
     width: 40%; 
