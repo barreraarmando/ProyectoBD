@@ -30,7 +30,7 @@ and open the template in the editor.
                                 "a las condiciones que deseemos. Siguiendo con el ejemplo anterior, una consulta nos permite obtener "+
                                 "el nombre de los empleados que tengan el puesto de gerente o la dirección de un empleado con un "+
                                 "teléfono específico; por citar algunos ejemplos.\n\nOprime el botón y te explicaremos paso a paso cómo "+
-                                "crear una de estas consultas.";
+                                "crear una de esta s consultas.";
         var contenidoSentencias="";
          
         function habilitar(){
@@ -45,11 +45,6 @@ and open the template in the editor.
             document.getElementById("sentencias").value=contenidoSentencias;
         }
         
-         function habilitar2(){
-            document.getElementById("divTabla2").style.visibility="visible";
-            document.getElementById("derecha").style.visibility="hidden";
-            document.getElementById("divConsulta").style.visibility="hidden";
-        }
         
         function explicarCrearBase(){
             document.getElementById("explicaciones").value=explicarBase;
@@ -69,11 +64,25 @@ and open the template in the editor.
             document.getElementById("divConsulta").style.visibility="hidden";
         }
         
+
+        
         
         function crearConsulta(){
             document.getElementById("divTabla").style.visibility="hidden";
             document.getElementById("derecha").style.visibility="hidden";
             document.getElementById("divConsulta").style.visibility="visible";
+            document.getElementById("botonConsulta").disabled=false;
+        }
+
+        function Consulta(){
+
+            document.getElementById("sql").value="";
+            document.getElementById("divConsulta").style.visibility="visible";
+            var tabla= document.CrearConsulta.comboTabla.options[document.CrearConsulta.comboTabla.selectedIndex].text
+            var atributo= document.CrearConsulta.comboTabla.options[document.CrearConsulta.comboAtributo.selectedIndex].text
+            var condicion= document.CrearConsulta.comboTabla.options[document.CrearConsulta.comboCondicion.selectedIndex].text
+            contenidoSentencias="select "+atributo+" from "+atributo+" where "+condicion+";";
+            document.getElementById("sql").value=contenidoSentencias;
         }
         </script>
     </head>
@@ -90,22 +99,72 @@ and open the template in the editor.
                     <button id="iniciar" onclick="habilitar()">Crear base</button><button class="imagen fa fa-info" id="explicarCrearBase" onclick="explicarCrearBase()" title="Saber más..."></button>
                     <br>
                     <button name="boton1" id="boton1" onclick="crearTabla()" disabled="">Crear tabla</button><button class="imagen fa fa-info" onclick="explicarCrearTabla()" id="explicarCrearTabla"  title="Saber más..."></button>
+
                     <br>
-                    <button name="boton2" id="boton2" onclick="crearConsulta()" disabled="">Crear consulta</button><button class="imagen fa fa-info" onclick="explicarCrearConsulta()" id="explicarCrearConsulta" title="Saber más..."></button>
+                    <button name="boton2" id="boton2" onclick="crearConsulta()" >Crear consulta</button><button class="imagen fa fa-info" onclick="explicarCrearConsulta()" id="explicarCrearConsulta" title="Saber más..."></button>
+                    <button name="botonConsulta" id="botonConsulta" onclick="Consulta()" disabled="">Crear Consulta</button>
                 </div>
                 <div id="medio">
                     <div class="invisible" id="divTabla">
-                            <form action="tabla.html" method="get">
-                            <p>Tabla: <input type="text" name="nombretabla" size="42"></p>
-                            <p>Numero de Atributos: <input type="number" name="AtribtosNum" min="1"></p>
-                           <button name="botonTabla" id="boton3" onclick="habilitar2()">Crear tabla</button>
-                          </form>
-                                        
+
+
                         Crear aqui formulario, que sirva tambien de tutorial, para hacer tablas
                     </div>
-                    
                     <div class="invisible" id="divConsulta">
-                        Crear aqui formulario, que sirva tambien de tutorial, para hacer consultas
+                        <form name="CrearConsulta">
+				<span >
+					Crea una cosulta
+				</span>
+
+                            <div>
+                                <span>Elige tu tabla</span>
+                                <div>
+                                    <select name="comboTabla">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </select>
+                                </div>
+                                <span></span>
+                            </div>
+
+                            <div >
+                                <span>Eligue un atributo</span>
+                                <div>
+                                    <select name="comboAtributo">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </select>
+                                </div>
+                                <span ></span>
+                            </div>
+
+                            <div >
+                                <span>Condiciones</span>
+                                <div>
+                                    <select name="comboCondicion">
+                                        <option >1</option>
+                                        <option>2</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                    </select>
+                                </div>
+                                <span ></span>
+                            </div>
+
+
+                            <div>
+                                <div>
+
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div id="derecha">
                         <textarea disabled="" id="sentencias" readonly="" ></textarea>
@@ -122,8 +181,9 @@ Nota: Todas las sentencias deben terminar con punto y coma (;)
                     </div>
                 </div>
                 <div id="mas-derecho">
-                    Aqui se desplegaran las tablas que se creen o las consultas que se realicen
-                </div>
+                    <div id="derecha">
+                        <textarea disabled="" id="sql" readonly="" ></textarea>
+                    </div>
             </div>
         </div>  
     </body>
