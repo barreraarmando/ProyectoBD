@@ -62,6 +62,18 @@ and open the template in the editor.
                                 "MEDIUMTEXT:Una longitud máxima de 16.777.215 caracteres. Sirve para almecenar texto plano sin formato. Distingue entre minúculas y mayúsculas."+
                                 "LONGTEXT: Una longitud máxima de 4.294.967.298 caracteres. Sirve para almecenar texto plano sin formato. Distingue entre minúculas y mayúsculas.";
 
+        var select="Esta instrucción recupera las filas de una base de datos y habilita la selección de varias filas y columnas de"+" tablas que se encuentran contenidas dentro de una base de datos.";
+        var explicarFROM="La cláusula FROM también puede contener una operación de unión. Puede usar una operación de unión para hacer coincidir y combinar datos de dos orígenes de datos, como dos tablas o una tabla y una consulta.";
+        var explicarWHERE="La cláusula WHERE se usa para filtrar registros, la cláusula WHERE se usa para extraer solo aquellos registros que cumplen una condición específica.";
+        var explicarAS="Un alias, es otra forma de llamar a una tabla o a una columna, y se utiliza para simplificar las sentencias SQL cuando los nombre de tablas o columnas son largos o complicados.";
+        var explicarHAVING="La cláusula HAVING se agregó a SQL porque la palabra clave WHERE no se pudo usar con funciones agregadas. La función HAVING se utiliza para incluir condiciones con alguna función SQL del tipo SUM, MAX, ..";
+        var explicarIN="El operador IN le permite especificar múltiples valores en una cláusula WHERE, el operador IN es una abreviatura para múltiples condiciones OR.";
+        var explicarINNER="La sentencia INNER JOIN es el sentencia JOIN por defecto, y consiste en combinar cada fila de una tabla con cada fila de la otra tabla, seleccionado aquellas filas que cumplan una determinada condición.";
+        var explicarJOIN="Una cláusula JOIN se usa para combinar filas de dos o más tablas, en función de una columna relacionada entre ellas.";
+        var OR="La cláusula WHERE se puede combinar con operadores AND y OR, Los operadores AND y OR se utilizan para filtrar registros en función de más de una condición: El operador OR muestra un registro si alguna de las condiciones separadas por OR es VERDADERA.";
+        var AND="La cláusula WHERE se puede combinar con operadores AND y OR, Los operadores AND y OR se utilizan para filtrar registros en función de más de una condición: El operador AND muestra un registro si todas las condiciones separadas por AND son VERDADERAS.";
+        var Drop=" La sentencia DROP se utiliza para borrar definitivamente un índice, tabla o base de datos. Se utiliza para borrar una base de datos definitivamente.";
+
 
        
        
@@ -72,7 +84,7 @@ and open the template in the editor.
          
     function habilitar(){
             document.getElementById("boton1").disabled=false;
-            document.getElementById("boton2").disabled=false;
+            document.getElementById("boton2").disabled=true;
             document.getElementById("iniciar").disabled=true;
             var nombre = prompt("¿Cómo deseas que se llame tu base de datos?", "");
             document.getElementById("p1").innerHTML =nombre;
@@ -288,7 +300,7 @@ and open the template in the editor.
         var Formulario;
         var bandera=0;
         function crearTabla(){
-            
+            document.getElementById("boton2").disabled=false;
             document.getElementById("divTabla").style.visibility="visible";
             document.getElementById("derecha").style.visibility="hidden";
             document.getElementById("divConsulta").style.visibility="hidden";
@@ -390,6 +402,72 @@ var tabla;
 var atributo;
 var condicion;
 
+        function explicacionSelect(){
+        
+            document.getElementById("explicacion").value=select;
+            
+         }
+
+           function explicacionFROM(){
+        
+            document.getElementById("explicacion").value=explicarFROM;
+            
+         }
+
+           function explicacionWHERE(){
+        
+            document.getElementById("explicacion").value=explicarWHERE;
+            
+         }
+
+           function explicacionAS(){
+        
+            document.getElementById("explicacion").value=explicarAS;
+            
+         }
+
+           function explicacionHAVING(){
+        
+            document.getElementById("explicacion").value=explicarHAVING;
+            
+         }
+
+           function explicacionIN(){
+        
+            document.getElementById("explicacion").value=explicarIN;
+            
+         }
+
+            function explicacionINNER(){
+        
+            document.getElementById("explicacion").value=explicarINNER;
+            
+         }
+
+            function explicacionJOIN(){
+        
+            document.getElementById("explicacion").value=explicarJOIN;OR
+            
+         }
+
+             function explicacionOR(){
+        
+            document.getElementById("explicacion").value=OR;
+            
+         }
+
+            function explicacionAND(){
+        
+            document.getElementById("explicacion").value=AND;
+            
+         }
+
+            function explicacionDROP(){
+        
+            document.getElementById("explicacion").value=Drop;
+            
+         }
+
 
         function InsertarPalabra(nombre){
             console.log(nombre.value);
@@ -420,6 +498,7 @@ var condicion;
         function Consulta(){
             document.getElementById("sql").value="";
             document.getElementById("divConsulta").style.visibility="visible";
+
 
         }
 
@@ -466,7 +545,9 @@ var condicion;
           select.add(option);
          }
 
-         }
+       
+
+     }
         </script>
     </head>
     
@@ -489,8 +570,8 @@ var condicion;
                     <br>
                     <button name="boton1" id="boton1" onclick="crearTabla()" disabled="">Crear tabla</button><button class="imagen fa fa-info" onclick="explicarCrearTabla()" id="explicarCrearTabla"  title="Saber más..."></button>
                     <br>
-                    <button name="boton2" id="boton2" onclick="crearConsulta()" >Crear consulta</button><button class="imagen fa fa-info" onclick="explicarCrearConsulta()" id="explicarCrearConsulta" title="Saber más..."></button>
-
+                    <button name="boton2" id="boton2" onclick="crearConsulta()" disabled="">Crear consulta</button><button class="imagen fa fa-info" onclick="explicarCrearConsulta()" id="explicarCrearConsulta" title="Saber más..."></button>
+                    <textarea disabled="" id="explicacion" readonly="" style="height: 20%">Informacion de palabras reservadas de consultas</textarea>
                  </div>
                 
                 
@@ -506,12 +587,12 @@ var condicion;
                 <span >
                     Crea una cosulta<br>
                 </span>
-                <input onclick="InsertarPalabra(this)" type="button" value="SELECT">
-                <input onclick="InsertarPalabra(this)" type="button" value="FROM">
-                <input onclick="InsertarPalabra(this)" type="button" value="WHERE">
+                <input onclick="InsertarPalabra(this); explicacionSelect();" type="button" value="SELECT">
+                <input onclick="InsertarPalabra(this); explicacionFROM();" type="button" value="FROM">
+                <input onclick="InsertarPalabra(this); explicacionWHERE();" type="button" value="WHERE">
                 <input onclick="InsertarPalabra(this)" type="button" value="(">
                 <input onclick="InsertarPalabra(this)" type="button" value=")">
-                <input onclick="InsertarPalabra(this)" type="button" value="AS">
+                <input onclick="InsertarPalabra(this); explicacionAS();" type="button" value="AS">
                 <input onclick="InsertarPalabra(this)" type="button" value="=">
                 <input onclick="InsertarPalabra(this)" type="button" value="<">
                 <input onclick="InsertarPalabra(this)" type="button" value=">">
@@ -519,14 +600,13 @@ var condicion;
                 <input onclick="InsertarPalabra(this)" type="button" value="*">
                 <input onclick="InsertarPalabra(this)" type="button" value=";">
                 <input onclick="InsertarPalabra(this)" type="button" value=",">
-                <input onclick="InsertarPalabra(this)" type="button" value="HAVING"><br>
-                <input onclick="InsertarPalabra(this)" type="button" value="IN">
-                <input onclick="InsertarPalabra(this)" type="button" value="INNER">
-                <input onclick="InsertarPalabra(this)" type="button" value="JOIN">
-                <input onclick="InsertarPalabra(this)" type="button" value="OR">
-                <input onclick="InsertarPalabra(this)" type="button" value="AND">
-                
-                <input onclick="InsertarPalabra(this)" type="button" value="DROP">
+                <input onclick="InsertarPalabra(this); explicacionHAVING();" type="button" value="HAVING"><br>
+                <input onclick="InsertarPalabra(this); explicacionIN();" type="button" value="IN">
+                <input onclick="InsertarPalabra(this); explicacionINNER();" type="button" value="INNER">
+                <input onclick="InsertarPalabra(this); explicacionJOIN();" type="button" value="JOIN">
+                <input onclick="InsertarPalabra(this); explicacionOR();" type="button" value="OR">
+                <input onclick="InsertarPalabra(this); explicacionAND()" type="button" value="AND">
+                <input onclick="InsertarPalabra(this); explicacionDROP();" type="button" value="DROP">
                             <div>
                                 <span>Elige tu tabla</span>
                                 <div>
