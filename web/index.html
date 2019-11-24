@@ -64,6 +64,7 @@ and open the template in the editor.
        
        
         var contenidoSentencias="";
+        var GenerarTabla = 0;
          
         function habilitar(){
             document.getElementById("boton1").disabled=false;
@@ -94,6 +95,7 @@ and open the template in the editor.
             '<th>Valor</th>'+
             '</tr>';
 
+if(NumeroAtributos>1){
         for(var k=0;k<NumeroAtributos;k++){
             
             TablaGenerada += '<tr>'+
@@ -103,10 +105,55 @@ and open the template in the editor.
                 '<td>'+Atributos[k].Valor.value+'</td></tr>';
                 
         }
-        TablaGenerada += '</table>';
-        Tabla.innerHTML = NombreDeTabla+'<br>';
-        Tabla.innerHTML += TablaGenerada;
+}
+else{
+    TablaGenerada += '<tr>'+
+                '<td>'+Atributos.NombreAtributo.value+'</td>'+
+                '<td>'+Atributos.tipoDato.value+'</td>'+
+                '<td>'+Atributos.TamanoAtributo.value+'</td>'+
+                '<td>'+Atributos.Valor.value+'</td></tr>';
+}
 
+        TablaGenerada += '</table>';
+        Tabla.innerHTML = '<h3>'+NombreDeTabla+'</h3><br>';
+        Tabla.innerHTML += TablaGenerada+'<br>Sentencia para crear la tabla: <br>';
+
+        var SentenciaGenerada = "CREATE TABLE "+NombreDeTabla+" (";
+
+        if(NumeroAtributos>1){
+            for(var k=0;k<NumeroAtributos;k++){
+            
+                SentenciaGenerada += Atributos[k].NombreAtributo.value+' '+Atributos[k].tipoDato.value+'('+
+                Atributos[k].TamanoAtributo.value+')';
+
+                if(k!=(NumeroAtributos-1)){
+                SentenciaGenerada+=', ';}
+                
+            }
+        SentenciaGenerada +=');'
+        }
+       else{
+            SentenciaGenerada += Atributos.NombreAtributo.value+' '+Atributos.tipoDato.value+'('+
+                Atributos.TamanoAtributo.value+'));';
+        }   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        Tabla.innerHTML+=SentenciaGenerada
+        
 
         }
 
@@ -128,7 +175,6 @@ and open the template in the editor.
             document.getElementById("divTabla").style.visibility="visible";
             document.getElementById("derecha").style.visibility="hidden";
             document.getElementById("divConsulta").style.visibility="hidden";
-
             var Formulario = document.getElementById("divTabla");
             Formulario.innerHTML += '<form name="CrearTabla" action="index.html" method="get">'+
                              
@@ -138,8 +184,7 @@ and open the template in the editor.
                            '<br>'+
                            '<h3>Atributos:</h3>'+
                            '</form>';
-                           
- 
+
 
 
 
