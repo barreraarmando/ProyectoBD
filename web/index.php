@@ -11,6 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/Index.css" rel="stylesheet" type="text/css"/>
         <link href="font-Awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script>
             var ConsultaChida = "";
             var ContadorTablas=0;
@@ -285,6 +286,21 @@ and open the template in the editor.
 
 
         var NumeroAtributos = 0;
+        function Hola(nombre) {
+        var parametros = {"Nombre":nombre};
+        $.ajax({
+            data:parametros,
+            url:'respuesta.php',
+            type: 'post',
+            beforeSend: function () {
+                $("#derecha-abajo").html("Procesando, espere por favor");
+            },
+            success: function (response) {   
+                $("#derecha-abajo").html(response);
+            }
+        });
+        }
+
         function explicarCrearBase(){
             document.getElementById("explicaciones").value=explicarBase;
         }
@@ -497,6 +513,7 @@ var condicion;
 
         function Consulta(){
             document.getElementById("sql").value="";
+            ConsultaChida =" ";
             document.getElementById("divConsulta").style.visibility="visible";
 
 
@@ -552,6 +569,7 @@ var condicion;
     </head>
     
     <body>
+    
         <div id="central">
             
             
@@ -643,11 +661,23 @@ var condicion;
 
                             <div>
                                 <div>
-                                        <input type="button" name="BotonConsulta" id="BotonConsulta" onclick="Consulta()" value="Checar Consulta"></button>
+                                        <input type="button" name="BotonConsulta" id="BotonConsulta" onclick="Consulta()" value="Eliminar consulta"></button>
                                 </div>
                             </div>
                         </form>
-                        <textarea disabled="" id="sql" readonly=""  style="height:100px; width: 650px"></textarea>
+     
+
+
+                            <textarea name="sentencia" id="sql" readonly=""  style="height:100px; width: 650px"></textarea>
+
+                            
+                            <input type="button" name="enviar" value="Enviar" href="javascript:;" onclick="Hola($('#sql').val());">
+                            <div id="resultado"></div>
+
+
+
+
+                        
                     </div>
                     
                     <div id="derecha">
@@ -671,5 +701,10 @@ Nota: Todas las sentencias deben terminar con punto y coma (;)
                 </div>
             </div>
         </div>  
+
+
+
+
+
     </body>
 </html>
