@@ -13,11 +13,13 @@ if(strlen($_POST['Nombre'])>0 && $_POST['Nombre']!='dump'){
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
     $response = curl_exec($ch);
 
-    //echo $response;
+
+    $httpcode=curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
 
     $arreglo = json_decode($response);
-    if($arreglo->optimization_recs_count==1){
+
+    if($httpcode==200){
         echo "Se acepto la consulta!";
     }else{
         echo "Tu consulta tiene un error bro :c, pero no te preocupes, aqui esta la descripcion:<br><br>";
