@@ -155,6 +155,40 @@ and open the template in the editor.
  box-shadow: none;
  border-radius: 0px;
 }
+#BotonSalienteEntrante{
+    background-image:url(../images/salienteentrante.jpg);
+    background-repeat: no-repeat;
+    background-size: 100px 50px;
+    width:100px;
+    height:50px;
+    color:white;
+    border: 0;
+ box-shadow: none;
+ border-radius: 0px;
+
+
+
+
+}
+
+#BotonEntranteSaliente{
+    background-image:url(../images/entrantesaliente.jpg);
+    background-repeat: no-repeat;
+    background-size: 100px 50px;
+    width:100px;
+    height:50px;
+    color:white;
+    border: 0;
+ box-shadow: none;
+ border-radius: 0px;
+
+}
+
+#sql{
+    height:80px;
+    width: 650px;
+}
+
 #BotonFinal{
     background-image:url(../images/topeder.jpg);
     background-repeat: no-repeat;
@@ -166,6 +200,15 @@ and open the template in the editor.
  box-shadow: none;
  border-radius: 0px;
 }
+
+#Puzzle1,#Puzzle2,#Puzzle3,#Puzzle4,#Puzzle5,#Puzzle6,#Puzzle7,#Puzzle8,#Puzzle9,#Puzzle10,#Puzzle11,#Puzzle12,#Puzzle13{
+    display:inline;
+    width: 200px;
+    height: 100px;
+    padding: 200px;
+    border: 10px solid #aaaaaa;
+  }
+
 
 
 #BotonConsulta{

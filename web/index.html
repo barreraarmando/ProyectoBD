@@ -4,6 +4,8 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+
+
 <html>
     <head>
         <title>Proyecto Base de Datos</title>
@@ -13,6 +15,10 @@ and open the template in the editor.
         <link href="font-Awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script>
+            //TODO: poner rompecabezas
+            // TODO actualizar texto boton combobox
+            // TODO Limitar combobox
+            // TODO make dragabble combobox
             var ConsultaChida = "";
             var ContadorTablas=0;
             var NombreDeLasTablas=['0'];
@@ -78,7 +84,7 @@ and open the template in the editor.
 
        
        
-       
+       var cadenaEstilo="";
         var SeparadorAtributos = [0,0,0];
         var contenidoSentencias="";
         var GenerarTabla = 0;
@@ -108,12 +114,26 @@ and open the template in the editor.
             ev.preventDefault();
         }
 
-        function drop(ev) {
+        function drop(ev,numeropuzzle) {
             ev.preventDefault();
             var data = ev.dataTransfer.getData("text");
             console.log(data);
             InsertarPalabraDrop(data);
-            //ev.target.appendChild(document.getElementById(data));
+            var actual = document.getElementById(numeropuzzle.id);
+
+            if(data == "SELECT" || data == "FROM" || data == "WHERE" || data == "OR" || data == "AND" || data == "AS" || data == "=" || data == "<" || data == ">" || data == ";" || data == ","){
+            actual.style.backgroundImage = "url('images/saliente.jpg')";
+            actual.style.backgroundSize = "400px 200px";
+            }
+            else if(data == "*" || data == "("){
+            actual.style.backgroundImage = "url('images/entrante.jpg')";
+            actual.style.backgroundSize = "400px 200px";
+            }
+            else if(data == ")" || data == "'"){
+                actual.style.backgroundImage = "url('images/salienteentrante.jpg')";
+                actual.style.backgroundSize= "400px 200px";
+            }
+
         }
         
         function enviar(form){
@@ -160,10 +180,7 @@ and open the template in the editor.
             '</tr>';
         }
 
-        //TODO: poner rompecabezas
-        // TODO actualizar texto boton combobox
-        // TODO Limitar combobox
-        // TODO make dragabble combobox
+
 
         var k =0;
        
@@ -329,7 +346,11 @@ and open the template in the editor.
         function explicarCrearConsulta(){
             document.getElementById("explicaciones").value=explicarConsulta;
         }
-        
+
+
+
+
+
         var Formulario;
         var bandera=0;
         function crearTabla(){
@@ -631,23 +652,22 @@ var condicion;
                 <input id="BotonSaliente" onclick="InsertarPalabra(this); explicacionSelect();" type="button" value="SELECT" draggable="true" ondragstart="drag(event)"></button>
                 <input id="BotonSaliente" onclick="InsertarPalabra(this); explicacionFROM();" type="button" value="FROM" draggable="true" " ondragstart="drag(event)">
                 <input id="BotonSaliente" onclick="InsertarPalabra(this); explicacionWHERE();" type="button" value="WHERE" draggable="true" ondragstart="drag(event)" ">
-                <input onclick="InsertarPalabra(this)" type="button" value="(" draggable="true" ondragstart="drag(event)">
-                <input onclick="InsertarPalabra(this)" type="button" value=")" draggable="true" ondragstart="drag(event)">
-                <input onclick="InsertarPalabra(this); explicacionAS();" type="button" value="AS" draggable="true" ondragstart="drag(event)">
-                <input onclick="InsertarPalabra(this)" type="button" value="=" draggable="true" ondragstart="drag(event)">
-                <input onclick="InsertarPalabra(this)" type="button" value="<" draggable="true" ondragstart="drag(event)">
-                <input onclick="InsertarPalabra(this)" type="button" value=">"draggable="true" ondragstart="drag(event)">
-                <input onclick="InsertarPalabra(this)" type="button" value="'" draggable="true" ondragstart="drag(event)">
-                <input id="BotonEntrante" onclick="InsertarPalabra(this)" type="button" value="*" draggable="true" " ondragstart="drag(event)">
+                <input id="BotonSaliente" onclick="InsertarPalabra(this); explicacionOR();" type="button" value="OR">
+                <input id="BotonSaliente" onclick="InsertarPalabra(this); explicacionAND()" type="button" value="AND">
+                <input id="BotonSaliente" onclick="InsertarPalabra(this); explicacionAS();" type="button" value="AS" draggable="true" ondragstart="drag(event)">
+                <input id="BotonSaliente" onclick="InsertarPalabra(this)" type="button" value="=" draggable="true" ondragstart="drag(event)">
+                <br>
+                <input id="BotonSaliente" onclick="InsertarPalabra(this)" type="button" value="<" draggable="true" ondragstart="drag(event)">
+                <input id="BotonSaliente" onclick="InsertarPalabra(this)" type="button" value=">"draggable="true" ondragstart="drag(event)">
                 <input id="BotonFinal" onclick="InsertarPalabra(this)" type="button" value=";" draggable="true" ondragstart="drag(event)">
-                <input onclick="InsertarPalabra(this)" type="button" value="," draggable="true" ondragstart="drag(event)">
-                <input onclick="InsertarPalabra(this); explicacionHAVING();" type="button" value="HAVING"><br>
-                <input onclick="InsertarPalabra(this); explicacionIN();" type="button" value="IN">
-                <input onclick="InsertarPalabra(this); explicacionINNER();" type="button" value="INNER">
-                <input onclick="InsertarPalabra(this); explicacionJOIN();" type="button" value="JOIN">
-                <input onclick="InsertarPalabra(this); explicacionOR();" type="button" value="OR">
-                <input onclick="InsertarPalabra(this); explicacionAND()" type="button" value="AND">
-                <input onclick="InsertarPalabra(this); explicacionDROP();" type="button" value="DROP">
+                <input id="BotonSaliente" onclick="InsertarPalabra(this)" type="button" value="," draggable="true" ondragstart="drag(event)">
+                <input id="BotonSalienteEntrante" onclick="InsertarPalabra(this)" type="button" value="'" draggable="true" ondragstart="drag(event)">
+                <input id="BotonEntranteSaliente" onclick="InsertarPalabra(this)" type="button" value="'" draggable="true" ondragstart="drag(event)">
+                <input id="BotonSalienteEntrante" onclick="InsertarPalabra(this)" type="button" value=")" draggable="true" ondragstart="drag(event)">
+                <br>
+                <input id="BotonEntrante" onclick="InsertarPalabra(this)" type="button" value="(" draggable="true" ondragstart="drag(event)">
+                <input id="BotonEntrante" onclick="InsertarPalabra(this)" type="button" value="*" draggable="true" " ondragstart="drag(event)">
+
                             <div>
                                 <span>Elige tu tabla</span>
                                 <div>
@@ -675,10 +695,15 @@ var condicion;
                                 <div>
                                     <select name="comboCondicion">
                                         <option>Seleccione un numero.</option>
-                                        <input type="button" value="Insertar" onclick="InsertarNumero()">
+                                        <input type="button" value="Insertar" id="BotonEntrante" onclick="InsertarNumero()">
                                     </select>
                                 </div>
-                                <span ></span>
+                                <span >Palabras</span>
+                                <div>
+                                        <input type="text">
+                                        <input type="button" value="Insertar" id="BotonEntrante" onclick="InsertarPalabras()">
+                                    </select>
+                                </div>
                             </div>
 
 
@@ -691,9 +716,9 @@ var condicion;
      
 
 
-                            <textarea name="sentencia" id="sql" readonly=""  style="height:80px; width: 650px;" ondrop="drop(event)" ondragover="allowDrop(event)"></textarea>
-
                             
+
+                        <textarea name="sentencia" id="sql" readonly=""></textarea>
                             <input type="button" name="enviar" value="Enviar" href="javascript:;" onclick="Hola($('#sql').val());">
                             <div id="resultado"></div>
 
@@ -722,9 +747,27 @@ Nota: Todas las sentencias deben terminar con punto y coma (;)
                 <div id="mas-derecho">
                     Aqui se desplegaran las tablas que se creen.
                 </div>
+
+
+                
             </div>
+
+        
         </div>  
 
+        <div id="Puzzle1" ondrop="drop(event,this)" ondragover="allowDrop(event)"></div>
+        <div id="Puzzle2" ondrop="drop(event,this)" ondragover="allowDrop(event)"></div>
+        <div id="Puzzle3" ondrop="drop(event,this)" ondragover="allowDrop(event)"></div>
+        <div id="Puzzle4" ondrop="drop(event,this)" ondragover="allowDrop(event)"></div>
+        <div id="Puzzle5" ondrop="drop(event,this)" ondragover="allowDrop(event)"></div>
+        <div id="Puzzle6" ondrop="drop(event,this)" ondragover="allowDrop(event)"></div>
+        <div id="Puzzle7" ondrop="drop(event,this)" ondragover="allowDrop(event)"></div>
+        <div id="Puzzle8" ondrop="drop(event,this)" ondragover="allowDrop(event)"></div>
+        <div id="Puzzle9" ondrop="drop(event,this)" ondragover="allowDrop(event)"></div>  
+        <div id="Puzzle10" ondrop="drop(event,this)" ondragover="allowDrop(event)"></div>  
+        <div id="Puzzle11" ondrop="drop(event,this)" ondragover="allowDrop(event)"></div>  
+        <div id="Puzzle12" ondrop="drop(event,this)" ondragover="allowDrop(event)"></div>  
+        <div id="Puzzle13" ondrop="drop(event,this)" ondragover="allowDrop(event)"></div>  
 
 
 
