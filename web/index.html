@@ -100,8 +100,21 @@ and open the template in the editor.
         var TablaGenerada;
         var NombreDeTablaUno;
         
-        
-        
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.value);
+        }
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            console.log(data);
+            InsertarPalabraDrop(data);
+            //ev.target.appendChild(document.getElementById(data));
+        }
         
         function enviar(form){
             SeparadorAtributos[ContadorTablas-1]=(NumeroAtributos-1);
@@ -121,7 +134,7 @@ and open the template in the editor.
          NombreDeLasTablas[0]=CrearTabla.nombretabla.value;
         }
 
-        console.log(NombreDeLasTablas);
+
         
 
         var TablaGenerada=["<table>","<table>","<table>"];
@@ -147,13 +160,17 @@ and open the template in the editor.
             '</tr>';
         }
 
-        //TODO:Pasar atributos a una var global
+        //TODO: poner rompecabezas
+        // TODO actualizar texto boton combobox
+        // TODO Limitar combobox
+        // TODO make dragabble combobox
 
         var k =0;
        
        
        
-       
+
+
         for(var g=0;g<=ContadorTablas;g++){
 
             if(NumeroAtributos>0 && ContadorTablas>0){
@@ -491,6 +508,12 @@ var condicion;
             document.getElementById("sql").value=ConsultaChida;
         }
 
+        function InsertarPalabraDrop(nombre){
+            console.log(nombre);
+            ConsultaChida +=" "+nombre;
+            document.getElementById("sql").value=ConsultaChida;
+        }
+
 
         function InsertarTabla(){
             tabla= document.CrearConsulta.comboTablas.options[document.CrearConsulta.comboTablas.selectedIndex].text;
@@ -605,19 +628,19 @@ var condicion;
                 <span >
                     Crea una cosulta<br>
                 </span>
-                <input onclick="InsertarPalabra(this); explicacionSelect();" type="button" value="SELECT">
-                <input onclick="InsertarPalabra(this); explicacionFROM();" type="button" value="FROM">
-                <input onclick="InsertarPalabra(this); explicacionWHERE();" type="button" value="WHERE">
-                <input onclick="InsertarPalabra(this)" type="button" value="(">
-                <input onclick="InsertarPalabra(this)" type="button" value=")">
-                <input onclick="InsertarPalabra(this); explicacionAS();" type="button" value="AS">
-                <input onclick="InsertarPalabra(this)" type="button" value="=">
-                <input onclick="InsertarPalabra(this)" type="button" value="<">
-                <input onclick="InsertarPalabra(this)" type="button" value=">">
-                <input onclick="InsertarPalabra(this)" type="button" value="'">
-                <input onclick="InsertarPalabra(this)" type="button" value="*">
-                <input onclick="InsertarPalabra(this)" type="button" value=";">
-                <input onclick="InsertarPalabra(this)" type="button" value=",">
+                <input id="BotonSaliente" onclick="InsertarPalabra(this); explicacionSelect();" type="button" value="SELECT" draggable="true" ondragstart="drag(event)"></button>
+                <input id="BotonSaliente" onclick="InsertarPalabra(this); explicacionFROM();" type="button" value="FROM" draggable="true" " ondragstart="drag(event)">
+                <input id="BotonSaliente" onclick="InsertarPalabra(this); explicacionWHERE();" type="button" value="WHERE" draggable="true" ondragstart="drag(event)" ">
+                <input onclick="InsertarPalabra(this)" type="button" value="(" draggable="true" ondragstart="drag(event)">
+                <input onclick="InsertarPalabra(this)" type="button" value=")" draggable="true" ondragstart="drag(event)">
+                <input onclick="InsertarPalabra(this); explicacionAS();" type="button" value="AS" draggable="true" ondragstart="drag(event)">
+                <input onclick="InsertarPalabra(this)" type="button" value="=" draggable="true" ondragstart="drag(event)">
+                <input onclick="InsertarPalabra(this)" type="button" value="<" draggable="true" ondragstart="drag(event)">
+                <input onclick="InsertarPalabra(this)" type="button" value=">"draggable="true" ondragstart="drag(event)">
+                <input onclick="InsertarPalabra(this)" type="button" value="'" draggable="true" ondragstart="drag(event)">
+                <input id="BotonEntrante" onclick="InsertarPalabra(this)" type="button" value="*" draggable="true" " ondragstart="drag(event)">
+                <input id="BotonFinal" onclick="InsertarPalabra(this)" type="button" value=";" draggable="true" ondragstart="drag(event)">
+                <input onclick="InsertarPalabra(this)" type="button" value="," draggable="true" ondragstart="drag(event)">
                 <input onclick="InsertarPalabra(this); explicacionHAVING();" type="button" value="HAVING"><br>
                 <input onclick="InsertarPalabra(this); explicacionIN();" type="button" value="IN">
                 <input onclick="InsertarPalabra(this); explicacionINNER();" type="button" value="INNER">
@@ -631,7 +654,7 @@ var condicion;
                                     <select name="comboTablas">
                                         <option>Seleccione una tabla.</option>
                                     </select>
-                                    <input type="button" value="Insertar" onclick="InsertarTabla()">
+                                    <input type="button" value="Insertar" id="BotonEntrante" onclick="InsertarTabla()">
                                 </div>
                                 <span></span>
                             </div>
@@ -641,7 +664,7 @@ var condicion;
                                 <div>
                                     <select name="comboAtributo">
                                         <option>Seleccione una atributo.</option>
-                                        <input type="button" value="Insertar" onclick="InsertarAtributo()">
+                                        <input type="button" value="Insertar" id="BotonEntrante" onclick="InsertarAtributo()">
                                     </select>
                                 </div>
                                 <span ></span>
@@ -668,7 +691,7 @@ var condicion;
      
 
 
-                            <textarea name="sentencia" id="sql" readonly=""  style="height:100px; width: 650px"></textarea>
+                            <textarea name="sentencia" id="sql" readonly=""  style="height:80px; width: 650px;" ondrop="drop(event)" ondragover="allowDrop(event)"></textarea>
 
                             
                             <input type="button" name="enviar" value="Enviar" href="javascript:;" onclick="Hola($('#sql').val());">

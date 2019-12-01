@@ -5,7 +5,7 @@ and open the template in the editor.
 */
 /* 
     Created on : Nov 16, 2019, 3:17:40 PM
-    Author     : rodri
+    Author     : Rodri BB
 */
 @import 'https://fonts.googleapis.com/css?family=Rubik+One';
 
@@ -131,6 +131,43 @@ and open the template in the editor.
     margin-bottom: 5%;
     width: 40%;
 }
+
+#BotonSaliente{
+    background-image:url(../images/saliente.jpg);
+    background-repeat: no-repeat;
+    background-size: 100px 50px;
+    width:100px;
+    height:50px;
+    color:white;
+    border: 0;
+ box-shadow: none;
+ border-radius: 0px;
+}
+
+#BotonEntrante{
+    background-image:url(../images/entrante.jpg);
+    background-repeat: no-repeat;
+    background-size: 100px 50px;
+    width:100px;
+    height:50px;
+    color:white;
+    border: 0;
+ box-shadow: none;
+ border-radius: 0px;
+}
+#BotonFinal{
+    background-image:url(../images/topeder.jpg);
+    background-repeat: no-repeat;
+    background-size: 100px 50px;
+    width:100px;
+    height:50px;
+    color:white;
+    border: 0;
+ box-shadow: none;
+ border-radius: 0px;
+}
+
+
 #BotonConsulta{
     border-radius: 300px;
     font-size: 13px;
@@ -149,6 +186,7 @@ and open the template in the editor.
     margin-bottom: 5%;
     width: 20%;
 }
+
 #RellenaBoton{
 
         border-radius: 300px;
@@ -244,5 +282,6 @@ th {
     text-align: left;
 
 }
+
 
 tr:nth-child(even) {background-color: #f2f2f2;}
