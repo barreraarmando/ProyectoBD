@@ -13,14 +13,33 @@ and open the template in the editor.
     position: absolute;
     height: 800px;
     width: 2000px;
-    margin: -100px 0 0 -850px;
-    top: 50%;
-    left: 50%;
+    margin: -200px 0 0 -800px;
+    top: 25%;
+    left: 40%;
     display:table;
     font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
     font-size: 15px; 
     border: black 2px solid;
 }
+
+#Puzzle1,#Puzzle2,#Puzzle3,#Puzzle4,#Puzzle5,#Puzzle6,#Puzzle7,#Puzzle8,#Puzzle9,#Puzzle10,#Puzzle11,#Puzzle12,#Puzzle13{
+    display:inline;
+    width: 100px;
+    height: 80px;
+    padding: 50px;
+    border: 5px solid #aaaaaa;
+    color: white;
+    resize: both;
+  }
+  
+  #divPiezas{
+      font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+      font-size: 25px; 
+      position: absolute;
+      margin-top: 900px;
+      visibility: hidden;
+      margin-bottom: 100px;
+  }
 
 #titulo{
     float: left; 
@@ -38,11 +57,10 @@ and open the template in the editor.
 #izquierda{
     float: left; 
     width: 20%; 
-    height: 99%;
+    height: 100%;
     color: white;
     background-color: blue;
     border-right: black 2px solid;
-    border-bottom: black 2px solid;
     padding-top: 2%;
     text-align: center;
     overflow: auto;
@@ -113,10 +131,16 @@ and open the template in the editor.
     margin-bottom: 5%;
     width: 15%;
 }
+#EnviaBoton:hover{
+    background: #ffffff;
+    color: #768ffe;
+    box-shadow: inset 0 0 0 3px #768ffe;
+}
 #AgregaBoton{
     border-radius: 300px;
     font-size: 13px;
     margin: 5px auto;
+    margin-right: 50px;
     text-transform: uppercase;
     font-weight: 400;
     text-decoration: none;
@@ -129,7 +153,13 @@ and open the template in the editor.
     border: none;
     transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
     margin-bottom: 5%;
-    width: 40%;
+    width: 180px;;
+}
+
+#AgregaBoton:hover{
+    background: #ffffff;
+    color: #768ffe;
+    box-shadow: inset 0 0 0 3px #768ffe;
 }
 
 #BotonSaliente{
@@ -155,6 +185,18 @@ and open the template in the editor.
  box-shadow: none;
  border-radius: 0px;
 }
+
+.rompecabezas{
+    background-image:url(../images/entrante.jpg);
+    background-repeat: no-repeat;
+    background-size: 100px 50px;
+    width:100px;
+    height:50px;
+    color:white;
+    border: 0;
+    box-shadow: none;
+    border-radius: 0px;
+}
 #BotonSalienteEntrante{
     background-image:url(../images/salienteentrante.jpg);
     background-repeat: no-repeat;
@@ -169,6 +211,11 @@ and open the template in the editor.
 
 
 
+}
+
+#divConsulta{
+    display:table;
+    
 }
 
 #BotonEntranteSaliente{
@@ -186,7 +233,7 @@ and open the template in the editor.
 
 #sql{
     height:80px;
-    width: 650px;
+    width: 80%;
 }
 
 #BotonFinal{
@@ -200,16 +247,6 @@ and open the template in the editor.
  box-shadow: none;
  border-radius: 0px;
 }
-
-#Puzzle1,#Puzzle2,#Puzzle3,#Puzzle4,#Puzzle5,#Puzzle6,#Puzzle7,#Puzzle8,#Puzzle9,#Puzzle10,#Puzzle11,#Puzzle12,#Puzzle13{
-    display:inline;
-    width: 200px;
-    height: 100px;
-    padding: 200px;
-    border: 10px solid #aaaaaa;
-  }
-
-
 
 #BotonConsulta{
     border-radius: 300px;
@@ -227,7 +264,38 @@ and open the template in the editor.
     border: none;
     transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
     margin-bottom: 5%;
-    width: 20%;
+    width: 30%;
+}
+
+#BotonConsulta:hover{
+    background: #ffffff;
+    color: #768ffe;
+    box-shadow: inset 0 0 0 3px #768ffe;
+}
+
+.botonazo{
+    border-radius: 300px;
+    font-size: 13px;
+    margin: 5px auto;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-decoration: none;
+    padding: 1em 1.75em;
+    background-color: #768ffe;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    line-height: 1em;
+    color: #ffffff;
+    border: none;
+    transition: background-color .1s 0s ease-in-out,color .1s 0s ease-in-out;
+    margin-bottom: 5%;
+    width: 30%;
+}
+
+.botonazo:hover{
+    background: #ffffff;
+    color: #768ffe;
+    box-shadow: inset 0 0 0 3px #768ffe;
 }
 
 #RellenaBoton{
